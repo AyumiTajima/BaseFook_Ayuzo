@@ -118,7 +118,14 @@
     "excited",
     ""
   ];
-  const images = [];
+  const images = [
+    "images/1.jpeg",
+    "images/2.jpeg",
+    "images/3.jpg",
+    "images/4.jpg",
+    "images/5.jpeg",
+    "images/6.jpeg",
+  ];
 
   const generateRandomText = () => {
     return [
@@ -126,11 +133,28 @@
       getRandomElement(verbs),
       getRandomElement(fillers),
       getRandomElement(nouns),
-      getRandomElement(hashtags)
+      getRandomElement(hashtags),
+      getRandomElement(feelings),
     ].join(" ");
   };
 
-  const generatePostObj = timeOffset => {
+  // const generatePostObj = timeOffset => {
+  //   // if an offset is provided, make the timestamp that much older, otherwise just use the current time
+  //   const timestamp = timeOffset
+  //     ? new Date(new Date().getTime() - timeOffset)
+  //     : new Date();
+
+  //   return {
+  //     friend: getRandomElement(bacefook.friendNames),
+  //     text: generateRandomText(),
+  //     feeling: getRandomElement(feelings),
+  //     image: getRandomElement(images),
+  //     timestamp
+  //   };
+  // };
+  
+  // windowオブジェクトに generatePostObj を追加
+  window.generatePostObj = timeOffset => {
     // if an offset is provided, make the timestamp that much older, otherwise just use the current time
     const timestamp = timeOffset
       ? new Date(new Date().getTime() - timeOffset)
@@ -141,9 +165,12 @@
       text: generateRandomText(),
       feeling: getRandomElement(feelings),
       image: getRandomElement(images),
+      hashtag:getRandomElement(hashtags),
       timestamp
     };
   };
+
+  console.log(generatePostObj())
 
   const addPost = obj => {
     const friend = obj.friend;

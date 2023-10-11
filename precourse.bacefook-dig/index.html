@@ -1,14 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIG Bacefook Newsfeed</title>
     <script src="dataGenerator.js"></script>
+    <script src="moment.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div>
     <h1>Bacefook Newsfeed</h1>
+
+    <label for="name">username: </label>
+    <input type="text" name="username" id="username" required readonly>
+
+    
+    <!-- <div class="item__header clearfix">
+      <span class="item__user-icon">
+        <img src="https://source.unsplash.com/random/75x50" height="48" width="48" alt="ジバニャン" class="item__user-icon-img" />
+      </span>
+      <span class="item__user-name">
+        <strong>{username()}</strong>
+      </span>
+      <span class="item__date">
+        2014/08/29 19:00
+      </span>
+    </div> -->
+    
+    </div>
+   </div>
     <button class="relode-button" type="button">relode</button>
+    <button class="post-button" type="button">post</button>
+    <form action="" method="get" name="form1">
+      <div>
+        <label for="name">気持ちを入力してね: </label>
+        <input type="text" name="post" id="post" required>
+      </div>
+    </form>
+
     <div id="newsfeed"></div>
     <script src="app.js"></script>
+
+    <canvas class="background"></canvas>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.2/particles.min.js"></script>
+
   </body>
 </html>
