@@ -9,9 +9,19 @@
   bacefook.newsfeed = [];
   bacefook.friends = {};
   bacefook.friendNames = ["tamaroh", "kani", "eriko", "tsubasa", "masataka"];
+  bacefook.icons = [
+    "icons/1.png",
+    "icons/2.png",
+    "icons/3.png",
+    "icons/4.png",
+    "icons/5.png",
+    "icons/6.png",
+    ];
   bacefook.friendNames.forEach(name => {
     bacefook.friends[name] = [];
   });
+
+  console.log(bacefook)
 
   const getRandomElement = array => {
     // Given an array, returns a random element
@@ -122,9 +132,16 @@
     "images/1.jpeg",
     "images/2.jpeg",
     "images/3.jpg",
-    "images/4.jpg",
-    "images/5.jpeg",
-    "images/6.jpeg",
+    "images/4.JPG",
+    "images/5.JPG",
+    "images/6.JPG",
+    "images/7.JPG",
+    "images/8.JPG",
+    "images/9.JPG",
+    "images/10.jpg",
+    "images/11.JPG",
+    "images/12.JPG",
+    "images/13.JPG",
   ];
 
   const generateRandomText = () => {
@@ -162,6 +179,7 @@
 
     return {
       friend: getRandomElement(bacefook.friendNames),
+      icon:getRandomElement(bacefook.icons),
       text: generateRandomText(),
       feeling: getRandomElement(feelings),
       image: getRandomElement(images),
