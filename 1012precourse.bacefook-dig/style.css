@@ -1,0 +1,391 @@
+@import url("https://fonts.googleapis.com/css?family=Merienda");
+/* 流星アニメーション */
+@keyframes shtstra{
+  0%{background-position-y:0,100%;}
+  50%,100%{background-position-y:0,0%;}
+  }
+
+@keyframes shtstrb{
+0%,10%{background-position-x:0px,100%;}
+20%,30%{background-position-x:200px,100%;}
+40%,50%{background-position-x:100px,100%;}
+60%,70%{background-position-x:250px,100%;}
+80%,90%{background-position-x:150px,100%;}
+}
+
+/* headbarのスタイル */
+#headbar {
+  display: flex;
+  background-color: black;
+  margin: 0 auto;
+  padding: 0;
+  background-image:
+  repeating-linear-gradient(135deg,#000000 0% 49%,#00000000 50%,#000000 51% 100%),
+  linear-gradient(#000000 0% 33%,#ffff88 66%,#000000 67% 100%);
+  background-size:100% 100%,100% 300%;
+  animation:shtstra 1.4s linear infinite,shtstrb 7s linear infinite;
+}
+
+/* logoのスタイル */
+.logo {
+  font-size: 40px; /* フォントサイズ */
+  font-weight: bold; /* フォント太さ */
+  padding-top: 0px;
+  padding-bottom: 0px;
+  position: relative;
+  padding-left: 100px;
+  color: #ffffe0; /* フォント色 */
+}
+/* logoの下線のスタイル */
+.logo:before {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: repeating-linear-gradient(300deg, #ffffe0 0%, rgba(255, 255, 255, 0) 100%);
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* usernameのスタイル */
+.username {
+  height: 100%;
+  color: #ffffe0;
+  font-weight: bold; /* フォント太さ */
+  align-items: center; /* 高さを親要素の中央に配置 */
+  color: #ffffe0;
+  padding-left: 600px;
+  padding-top: 50px; /* パディングを0に設定 */
+  margin: 0; /* マージンを0に設定 */
+}
+
+/* 星空の背景のスタイル */
+.stars {
+  position: relative;
+  width: 100%; /* 星空の横幅 */
+  height: 100%; /* 星空の縦幅 */
+  background-image: linear-gradient(0deg, #00dedc, #115d89, #080f1c); /* 星空の背景色 */
+  overflow: hidden; /* 星が枠外にはみ出すのを防ぐ */
+}
+
+/* 星のスタイル */
+.star {
+  position: absolute;
+  display: block;
+  background-color: #fff; /* 星の色 */
+  border-radius: 50%;
+  box-shadow: 0 0 4px 2px rgba(#fff, 0.2); /* 星の影 */
+  opacity: 0;
+  animation: twinkle 5s infinite;
+}
+
+/* 星がキラキラ光るアニメーション */
+@keyframes twinkle {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* mainのスタイル */
+.main {
+  display: flex;
+  /* margin: 10px 10px 10px 10px; */
+}
+
+/* postで自動生成されるcontainerのスタイル */
+.main-post-container {
+  display: flex;
+  z-index: 1;
+  color: #fff;
+  background-color: rgba(78, 46, 239, 0.5); /* 背景色の透明度を指定 (0.5は透明度の例) */
+  width: 900px;
+  height: 200px;
+  /* text-align: center; */
+  padding: 10px; /* パディングを適宜調整 */
+  border-radius: 10px; /* 角を丸くする */
+  /* margin: auto; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.main-post-left {
+  position: relative;
+  padding-left: 10px;
+  width: 600px;
+}
+
+/* 投稿エリアのスタイル */
+/* 左側 */
+
+canvas[id*="a"] {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.d {
+  position: relative;
+  margin-left: 20%;
+}
+
+.postInput {
+  height: 180px;
+  background-color: rgba(81, 185, 246, 0.5); /* 背景色の透明度を指定 (0.5は透明度の例) */
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-top: 100px;
+  margin-right: 40px;
+  margin-left: 100px;
+  /* position: fixed; */
+  padding: 20px 40px;
+  border-radius: 10px; /* 角を丸くする */
+  margin-top: 50px;
+}
+
+.main-post-p{
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+/* inputのスタイル */
+#post{
+  margin-top: 0px;
+  width: 300px;
+  height: 100px;
+  border-radius: 10px; /* 角を丸くする */
+}
+
+/* modalのスタイル */
+.modal-window {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.25);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  &:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+  & > div {
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background-color: rgba(14, 13, 13, 0.95);
+  }
+  header {
+    font-weight: bold;
+  }
+  h1 {
+    font-size: 150%;
+    margin: 0 0 15px;
+  }
+}
+.modal-close {
+  color: #aaa;
+  line-height: 50px;
+  font-size: 80%;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+  &:hover {
+    color: blue;
+  }
+}
+/* Demo Styles */
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 18px;
+  line-height: 1.4;
+}
+body {
+  font-family: apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-weight: 600;
+  background-image: linear-gradient(to right, #7f53ac 0, #657ced 100%);
+  color: black;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.modal-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-left: 50px;
+}
+.modal-window {
+  & > div {
+    border-radius: 1rem;
+  }
+}
+.modal-window div:not(:last-of-type) {
+  margin-bottom: 15px;
+}
+small {
+  color: lightgray;
+}
+
+.modal-open-btn {
+  background-color: rgba(14, 13, 13, 0.9);
+  color: #ffffe0;
+  padding: 1em 1.5em;
+  border-radius: 0.5rem;
+  /* text-decoration: none; */
+  i {
+    padding-right: 0.3em;
+  }
+
+  &:hover {
+    color: #aaa;
+  }
+}
+
+
+
+/* open-modalにクラスを適用 */
+.open-modal-container {
+  color: #ffffe0;
+  z-index: 1;
+  height:200px;
+  background-image:
+  repeating-linear-gradient(135deg,#000000 0% 49%,#00000000 50%,#000000 51% 100%),
+  linear-gradient(#000000 0% 33%,#ffff88 66%,#000000 67% 100%);
+  background-size:100% 100%,100% 300%;
+  animation:shtstra 1.4s linear infinite,shtstrb 7s linear infinite;
+}
+
+
+
+
+
+
+/* 右側 */
+.main-post-text {
+  margin-left: 20px;
+  margin-top: 30px;
+  font-size: 20px;
+}
+
+.main__right {
+  z-index: 1;
+  height: 750px;
+  margin-left: 50px;
+  overflow: auto;
+}
+
+/* ユーザーのスタイル */
+.main-user-container {
+  display: flex;
+  align-items: center;
+}
+
+/* ユーザーネームのスタイル */
+.friend {
+  font-size: 17px;
+  margin-left: 10px;
+  text-align: left;
+}
+/* ユーザーアイコンのスタイル */
+.iconImg {
+  width: 40px;
+  height: 40px;
+}
+/* postの文字色のスタイル */
+.main__post {
+  color: #fff;
+  font-weight: bold; /* フォント太さ */
+  padding-top: 10px;
+}
+
+/* 投稿の経過時間を表示させるスタイル */
+.postedTime {
+  margin-top: 0px;
+  margin-left: 35px;
+}
+
+/* タイムスタンプのスタイル */
+.main-post-timestamp {
+  position: absolute;
+  font-size: 14px;
+  color: rgb(187, 179, 168);
+  bottom: 5px;
+}
+
+/* 投稿するimgのスタイル */
+.post-img {
+  margin-right: 0px;
+  margin-left: 100px;
+  width: 300px;
+  height: 200px;
+}
+
+.relode-button {
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  background: #1a1a80;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+.post-button {
+  appearance: none;
+  border: 0;
+  border-radius: 10px;
+  background: #1a1a80;
+  color: #fff;
+  padding: 8px 16px;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+/* より具体的なクラスを追加 */
+.post-button.post-button-hover:hover {
+  background: #148fcc;
+}
+
+.post-button.post-button-focus:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}
+/* より具体的なクラスを追加 */
+.relode-button.relode-button-hover:hover {
+  background: #148fcc;
+}
+
+.relode-button.relode-button-focus:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}
