@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIG Bacefook Newsfeed</title>
+    <script src="dataGenerator.js"></script>
+    <script src="moment.js"></script>
+    <script src="moon.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div id="headbar">
+        <p class="logo">BACE FOOK</p>
+    </div>
+    <div  class="stars">
+    <!-- <h1>Bacefook Newsfeed</h1> -->
+    <div class="main">
+      <div class="main__left">
+        <section class="d">
+          <div class="moonAge">
+            <canvas id="a0"></canvas>
+            <canvas id="a1"></canvas>
+            <canvas id="a2"></canvas>
+          </div>
+        </section>
+        <section class="postInput">
+            <button class="relode-button" type="button">relode</button>
+            <button class="post-button post-button-hover post-button-focus" type="button">post</button>
+            <form action="" method="get" name="form1">
+            <div class="main__post">
+              <label for="name">post: </label>
+              <input type="text" name="post" id="post" placeholder="今どんな感じー？" required>
+            </div>
+          </section>
+          <section class="modal-container">
+            <section class="interior">
+              <a class="modal-open-btn" href="#open-modal">直近の流星群をチェック🌠</a>
+            </section>
+            <section id="open-modal" class="modal-window">
+              <div class="open-modal-container">
+                <a href="#" title="Close" class="modal-close">Close</a>
+                <h2>🌟オリオン座流星群🌟</h2>
+                <h1>１０月２２日</h1>
+                <p>月の輝面積・・・49％です。</p>
+                <p>月が明るいので少し見づらいカモ🦆</p>
+              </div>
+            </section>
+          </section>
+      </div>
+
+    <!-- </form> -->
+      <div class="main__right">
+        <div id="newsfeed"></div>
+        <script src="app.js"></script>
+      </div>
+    </div>
+  </body>
+</html>
