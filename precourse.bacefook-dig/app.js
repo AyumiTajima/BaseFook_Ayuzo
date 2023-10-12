@@ -1,3 +1,36 @@
+//headbarのスタイルを適応する
+
+
+
+
+//星空のスタイルを適応する
+window.addEventListener("DOMContentLoaded", () => {
+  // 星を表示するための親要素を取得
+  const stars = document.querySelector(".stars");
+
+  // 星を生成する関数
+  const createStar = () => {
+    const starEl = document.createElement("span");
+    starEl.className = "star";
+    const minSize = 1; // 星の最小サイズを指定
+    const maxSize = 2; // 星の最大サイズを指定
+    const size = Math.random() * (maxSize - minSize) + minSize;
+    starEl.style.width = `${size}px`;
+    starEl.style.height = `${size}px`;
+    starEl.style.left = `${Math.random() * 100}%`;
+    starEl.style.top = `${Math.random() * 100}%`;
+    starEl.style.animationDelay = `${Math.random() * 10}s`;
+    stars.appendChild(starEl);
+  };
+
+  // for文で星を生成する関数を指定した回数呼び出す
+  for (let i = 0; i <= 500; i++) {
+    createStar();
+  }
+});
+
+
+//自動でpostを生成する
 window.addEventListener("load", () => {
   // This is a check to see if there's a username stored
   let username = localStorage.getItem("username");
@@ -10,22 +43,17 @@ window.addEventListener("load", () => {
   //usernameを表示する
   const usernameEl = document.createElement("div");
   usernameEl.className = "username";
-  usernameEl.innerText = username;
-  document.body.prepend(usernameEl);
+  usernameEl.innerText = "ようこそ、 "+ username +" さん";
+  
+  // headbar要素を取得
+  const headbarEl = document.querySelector("#headbar");
 
-  // 入力欄の値を書き換える
-  // const paragraph = document.createElement("p");
-  // paragraph.textContent = username;
-  // document.body.prepend(paragraph);
+  // headbar内にusernameEl要素を追加
+  headbarEl.append(usernameEl);
 
-
-  document.getElementById("username").value = username;
-  // function getName () {
-  //   document.getElementsById("area1").innerText = username;
-  // }  
 
   const containerEl = document.querySelector("#newsfeed");
-  containerEl.className = "main-container";
+  // containerEl.className = "main_all_container";
 
 
   // This makes things appear
@@ -36,41 +64,47 @@ window.addEventListener("load", () => {
     friendEl.className = "friend";
     friendEl.innerText = post.friend;
     
+    //post領域全体を囲う
     const postEl = document.createElement("div");
-    postEl.innerText = post.text;
-    postEl.append(friendEl);
-    
-    postEl.append(post.timestamp);
-    
+    postEl.className = "main-post-container"
+
+    //leftに寄せる要素をまとめる
+    const postLeftEl = document.createElement("div")
+    postLeftEl.className = "main-post-left"
+    //表示させるテキストを指定
+    postLeftEl.innerText = post.text;
+    postLeftEl.className = "main__post";
+
+    //user表示を追加
+    postLeftEl.append(friendEl);
+    //timestampを追加
+    postLeftEl.append(post.timestamp);
+
     //postTimeから経過時間を生成
     const postTimestampEl = document.createElement("div");
     postTimestampEl.className = "postedTime";
     postTimestampEl.innerText = moment(post.timestamp).fromNow();
-    postEl.append(postTimestampEl);
+    postLeftEl.append(postTimestampEl);
+
+    postEl.append(postLeftEl)
     
+    //imgを表示させる
     const imgEl = document.createElement("img");
     imgEl.src = post.image;
     imgEl.alt = "ランダム画像だよ";
-    imgEl.width = "100"
-    imgEl.height = "75"
+    imgEl.className = "post-img"
     postEl.append(imgEl);
+
+    
     
     containerEl.append(postEl);
     // console.log(bacefook.newsfeed.length)
   }
 });
 
-window.onload = function() {
-  Particles.init({
-    selector: '.background',
-    sizeVariations: 30,
-    color: [
-      '#0bd', 'rgba(0,187,221,.5)', 'rgba(0,187,221,.2)'
-    ]
-  });
-};
-
+//relodeボタンに機能を付与
 function relodeButtonClick() {
+  //postを生成する
   const post = bacefook.newsfeed[bacefook.newsfeed.length - 1];
   //divを生成する
   const friendEl = document.createElement("div");
@@ -81,40 +115,35 @@ function relodeButtonClick() {
 
   //記事を表示させる
   postEl.innerText = post.text;
+
+  //timeStampを表示する
+  postEl.append(post.timestamp);
+
   //postElに名前を追加する
   postEl.append(friendEl);
-
-  //imgを生成する
-  const imgEl = document.createElement("img");
-  imgEl.src = "https://source.unsplash.com/random/75x50";
-  imgEl.alt = "ランダム画像だよ";
-  imgEl.width = "75"
-  imgEl.height = "50"
-  // img1を表示させる
-  postEl.append(imgEl);
-  const containerEl = document.querySelector("#newsfeed");
-  containerEl.prepend(postEl);
-  containerEl.className = "post-container";
-
-  // timestampを生成する
-  const timestampEl = document.createElement("div");
-  timestampEl.className = "timestamp";
-  const nowTime = new Date();
-  timestampEl.innerText = nowTime;
-  postEl.append(timestampEl);
-
+  
   //postTimeから経過時間を生成
-  const postTimestamp = document.createElement("div");
-  postTimestamp.className = "postedTime";
-
+  const postTimestampEl = document.createElement("div");
+  postTimestampEl.className = "postedTime";
+  postTimestampEl.innerText = moment(post.timestamp).fromNow();
+  postEl.append(postTimestampEl);
+  
+  const imgEl = document.createElement("img");
+  imgEl.src = post.image;
+  imgEl.alt = "ランダム画像だよ";
+  imgEl.width = "100"
+  imgEl.height = "75"
+  postEl.append(imgEl);
+  
+  containerEl.append(postEl);
+  // console.log(bacefook.newsfeed.length)
 };
-
 
 // const yourPostObject = window.generatePostObj(timeOffset);
 // console.log(yourPostObject);  // 他のファイルで生成した投稿オブジェクトを利用できます
 
 
-
+//postボタンに機能を付与
 function postButtonClick() {
   const post = bacefook.newsfeed[bacefook.newsfeed.length - 1];
   console.log(post)
@@ -129,7 +158,8 @@ function postButtonClick() {
   friendEl.innerText = post.friend;
 
   //記事を表示させる
-  postEl.innerText = posted + post.feeling + post.hashtag;
+  postEl.innerText = posted + " "+ post.feeling +" "+ post.hashtag;
+  postEl.className = "main-container";
   //postElに名前を追加する
   postEl.append(friendEl);
 
@@ -140,27 +170,29 @@ function postButtonClick() {
   const nowTime = new Date();
   timestampEl.innerText = nowTime;
   postEl.append(timestampEl);
-  
+
   //postTimeから経過時間を生成
   const postTimestampEl = document.createElement("div");
   postTimestampEl.className = "postedTime";
   postTimestampEl.innerText = moment(post.timestamp).fromNow();
   console.log(post.timestamp)
   postEl.append(postTimestampEl);
-
-
-
-  // 出力 (2017年7月1日まで、どれだけあるか)
-// console.log( moment( '2017-07-01' ).fromNow() );
-  
-  //imgを生成する
+    
+  //img画像を表示する
   const imgEl = document.createElement("img");
-  imgEl.src = "https://source.unsplash.com/random/75x50";
+  imgEl.src = post.image;
   imgEl.alt = "ランダム画像だよ";
-  // img1を表示させる
+  imgEl.width = "100"
+  imgEl.height = "75"
   postEl.append(imgEl);
+  
   const containerEl = document.querySelector("#newsfeed");
   containerEl.prepend(postEl);
+
+  // 入力フィールドの値をクリアする
+  document.getElementById("post").value = "";
+
+    // console.log(bacefook.newsfeed.length)
 }
 
 // function postButtonClick() {
